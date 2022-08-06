@@ -18,9 +18,9 @@ router.post('/signin', signin)
 
 
 router.get('/',getAllUserData)
-router.get('/:id',getUserDatabyID)
-router.put('/:id',getUserDatabyIDandUpdate)
-router.delete('/:id',getUserDatabyIdandDelete)
+router.get('/:id',auth,getUserDatabyID)
+router.put('/:id',auth,getUserDatabyIDandUpdate)
+router.delete('/:id',auth,getUserDatabyIdandDelete)
 
 
 router.get("/signout", signout)
