@@ -52,7 +52,7 @@ exports.signin = (req, res) => {
     const token = jwt.sign({_id: user._id}, process.env.SECRET)
 
     // Put token in cookie
-    res.cookie('token', token, {expire: new Date() + 1})
+    res.cookie('token', token, {expiresIn:86400})
 
     // Send response
     const {_id, name,email} = user
@@ -79,7 +79,7 @@ exports.getAllUserData=async(req,res,next)=>{
 
 // get user details by id
 
-exports.getUserDatabyID =auth, async (req, res, next) => {
+exports.getUserDatabyID = async (req, res, next) => {
   try {
    const id = req.params.id;
    const user = await User.findById(id);
