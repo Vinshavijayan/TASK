@@ -1,4 +1,5 @@
 const express = require("express")
+const auth = require("../middleware/auth");
 const { signup, signin, signout } = require("../controllers/user")
 const { getAllUserData,getUserDatabyID,getUserDatabyIDandUpdate,getUserDatabyIdandDelete } = require("../controllers/user")
 const {check} = require('express-validator')
@@ -20,7 +21,6 @@ router.get('/',getAllUserData)
 router.get('/:id',getUserDatabyID)
 router.put('/:id',getUserDatabyIDandUpdate)
 router.delete('/:id',getUserDatabyIdandDelete)
-
 
 
 router.get("/signout", signout)
