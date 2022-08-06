@@ -1,4 +1,5 @@
 const User = require("../models/user")
+const auth = require("../middleware/auth");
 const {validationResult} = require('express-validator')
 const user = require("../models/user")
 var jwt = require('jsonwebtoken')
@@ -78,7 +79,7 @@ exports.getAllUserData=async(req,res,next)=>{
 
 // get user details by id
 
-exports.getUserDatabyID = async (req, res, next) => {
+exports.getUserDatabyID =auth, async (req, res, next) => {
   try {
    const id = req.params.id;
    const user = await User.findById(id);
