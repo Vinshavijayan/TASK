@@ -1,6 +1,7 @@
 const Post_lst = require('../models/post');
 
-//------------------------------data posting-------------------------------------
+//add post details
+
 exports.addPostData = (req,res)=>{
     let data = {
         Title : req.body.Title,
@@ -24,9 +25,8 @@ exports.addPostData = (req,res)=>{
     }).catch(err =>console.log(err))
 
 }
-//-------------------------------------------------------------------------------
 
-//----------------------------------get All Post Data------------------------------
+//get all post details
 
 exports.getAllPostData = (req,res)=>{
     Post_lst.find().then(result =>{
@@ -41,9 +41,9 @@ exports.getAllPostData = (req,res)=>{
     }).catch(err=>console.log(err))
 }
 
-//-------------------------------------------------------------------------------
 
-//---------------------------------get data by id--------------------------------
+//get post detail by id
+
 
 exports.getPostDatabyID= (req,res)=>{
     Post_lst.findById(req.params.id).then(result=>{
@@ -57,9 +57,9 @@ exports.getPostDatabyID= (req,res)=>{
     }).catch(err=>console.log(err))
 }
 
-//-------------------------------------------------------------------------------
 
-//----------------------------------get data by ID and update--------------------
+//get post detail by id and update
+
 
 exports.getPostDatabyIDandUpdate=(req,res)=>{
     let data = {
@@ -78,9 +78,8 @@ exports.getPostDatabyIDandUpdate=(req,res)=>{
     }).catch(err => console.log(err))
 }
 
-//-------------------------------------------------------------------------------
+//get post detail by id and delete
 
-//----------------------------------Get data by Id and delete--------------------
 
 exports.getPostDatabyIdandDelete=(req,res)=>{
     Post_lst.findByIdAndDelete(req.params.id).then(result=>{
@@ -98,4 +97,3 @@ exports.getPostDatabyIdandDelete=(req,res)=>{
 }
 
 
-//-------------------------------------------------------------------------------

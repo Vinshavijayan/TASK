@@ -67,43 +67,31 @@ exports.signin = (req, res) => {
   })
 }
 
+// get all users details
 
-
-
-
-
-
-
-
-exports.getAllUserData = (req,res)=>{
-    User.find().then(result =>{
-        if(!result){
-            res.status('404').json({
-                message:"cannot get result"
-            })
-
-        }else{
-            res.status('200').json(result)
-        }
-    }).catch(err=>console.log(err))
+exports.getAllUserData=async(req,res,next)=>{
+  const users=await User.find({})
+  res.status(200).json({
+      data:users
+  })
 }
 
+// get user details by id
 
+exports.getUserDatabyID = async (req, res, next) => {
+  try {
+   const id = req.params.id;
+   const user = await User.findById(id);
+   if (!user) return next(new Error('User does not exist'));
+    res.status(200).json({
+    data: user
+   });
+  } catch (error) {
+   next(error)
+  }
+ }
 
-
-exports.getUserDatabyID= (req,res)=>{
-    User.findById(req.params.id).then(result=>{
-        if(!result){
-            res.status('404').json({
-                message:'cannot find data by id'
-            })
-        }else{
-            res.status('200').json(result)
-        }
-    }).catch(err=>console.log(err))
-}
-
-
+// get user details by id and update
 
 
 exports.getUserDatabyIDandUpdate=(req,res)=>{
@@ -122,6 +110,8 @@ exports.getUserDatabyIDandUpdate=(req,res)=>{
         }
     }).catch(err => console.log(err))
 }
+
+// get user  by id and delete
 
 
 exports.getUserDatabyIdandDelete=(req,res)=>{
